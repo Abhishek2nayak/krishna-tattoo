@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import { Playfair_Display, DM_Sans } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/Navbar"
+import Navbar from "@/components/Navbar";
+import Script from 'next/script'
+
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -162,6 +164,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Navbar />
         {children}
+
+            <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-X20HG33MWD"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-X20HG33MWD');
+          `}
+        </Script>
       </body>
     </html>
   )

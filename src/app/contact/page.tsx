@@ -9,11 +9,35 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setTimeout(() => { setLoading(false); setSent(true) }, 1400)
-  }
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
+
+  setLoading(true)
+
+  const whatsappNumber = "918979335743"
+
+  const text = `
+🔥 New Tattoo Inquiry
+
+👤 Name: ${form.name}
+📞 Phone: ${form.phone}
+🎨 Service: ${form.service}
+
+📝 Message:
+${form.message}
+  `
+
+  const encodedText = encodeURIComponent(text)
+
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`
+
+  window.open(whatsappURL, "_blank")
+
+  setTimeout(() => {
+    setLoading(false)
+    setSent(true)
+  }, 1000)
+}
 
   const info = [
     {
